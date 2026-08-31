@@ -3,7 +3,7 @@ name: Run Maven Tests
 on:
   push:
     branches: [ main, master, develop ]
-  
+
 
 jobs:
   test:
@@ -20,22 +20,28 @@ jobs:
         cache: maven
     
     - name: Create config.properties
+      env:
+        BASE_URL: ${{ secrets.BASE_URL }}
+        AUTH_USERNAME: ${{ secrets.AUTH_USERNAME }}
+        AUTH_PASSWORD: ${{ secrets.AUTH_PASSWORD }}
       run: |
         mkdir -p src/test/resources
-        cat > src/test/resources/config.properties << EOF
-        baseURL=${{ secrets.BASE_URL }}
-        authUsername=${{ secrets.AUTH_USERNAME }}
-        authPassword=${{ secrets.AUTH_PASSWORD }}
-        contentType=application/json
-        accept=application/json
-        EOF
+        echo "baseURL=${BASE_URL}" > src/test/resources/config.properties
+        echo "authUsername=${AUTH_USERNAME}" >> src/test/resources/config.properties
+        echo "authPassword=${AUTH_PASSWORD}" >> src/test/resources/config.properties
+        echo "contentType=application/json" >> src/test/resources/config.properties
+        echo "accept=application/json" >> src/test/resources/config.properties
     
     - name: Verify config.properties
-      run: cat src/test/resources/config.properties
+      run: |
+        echo "=== Config file ==="
+        cat src/test/resources/config.properties
+        echo "=== File check ==="
+        ls -la src/test/resources/
     
     - name: Run Maven tests
       run: mvn test --batch-mode
-    
+      
     - name: Generate test report
       run: mvn --batch-mode surefire-report:report
       if: always()
