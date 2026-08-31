@@ -1,0 +1,6 @@
+baseURL=https://sailpointqaapp05.tsa400.service-now.com:8443
+authUsername=YOUR_USERNAME
+authPassword=YOUR_PASSWORD
+contentType=application/json
+accept=application/json
+EOF
