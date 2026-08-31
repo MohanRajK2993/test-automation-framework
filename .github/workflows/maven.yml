@@ -34,7 +34,7 @@ jobs:
       run: cat src/test/resources/config.properties
     
     - name: Run Maven tests
-      run: mvn --batch-mode clean test
+      run: mvn test --batch-mode
     
     - name: Generate test report
       run: mvn --batch-mode surefire-report:report
