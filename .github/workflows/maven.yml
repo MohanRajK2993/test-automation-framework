@@ -31,7 +31,7 @@ jobs:
         EOF
     
     - name: Run Maven tests
-      run: mvn clean test
+      run: mvn test
     
     - name: Generate test report
       run: mvn surefire-report:report
