@@ -40,7 +40,7 @@ jobs:
         ls -la src/test/resources/
     
     - name: Run Maven tests
-      run: mvn test --batch-mode
+      run: mvn test
       
     - name: Generate test report
       run: mvn --batch-mode surefire-report:report
