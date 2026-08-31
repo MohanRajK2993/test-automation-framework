@@ -24,6 +24,7 @@ public class GetIdentityTest {
 	            .auth().basic(username, password)
 	            .header("Content-Type", "application/json")
 	        
+	        
 	        .when()
 	            .get(fullURL);
 	    
