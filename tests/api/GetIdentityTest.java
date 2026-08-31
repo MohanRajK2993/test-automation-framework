@@ -1,10 +1,11 @@
 package org.practice.Junit5;
 
-import org.junit.Test;
+import static io.restassured.RestAssured.given;
+
+import org.junit.jupiter.api.Test;
+import org.practice.Junit5.ConfigReader;
 
 import io.restassured.response.Response;
-
-import static io.restassured.RestAssured.given;
 
 public class GetIdentityTest {
 	
@@ -23,7 +24,6 @@ public class GetIdentityTest {
 	            .relaxedHTTPSValidation()
 	            .auth().basic(username, password)
 	            .header("Content-Type", "application/json")
-	        
 	        
 	        .when()
 	            .get(fullURL);

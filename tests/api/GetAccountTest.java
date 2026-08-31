@@ -2,7 +2,8 @@ package org.practice.Junit5;
 
 import static io.restassured.RestAssured.given;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.practice.Junit5.ConfigReader;
 
 import io.restassured.response.Response;
 
